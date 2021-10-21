@@ -1,0 +1,69 @@
+﻿<Page x:Class="AtelierMVVM.View.PageAjoutPersonnel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AtelierMVVM.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAjoutPersonnel" Background="#FF6CB8C3">
+
+    <Grid Background="#FF88EB98">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="373*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="219,11,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.Nom}" VerticalAlignment="Top" Width="164"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="219,42,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.Prenom}" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="label" Content="Nom:" HorizontalAlignment="Left" Margin="128,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.555,1.457"/>
+        <Label x:Name="label_Copy" Content="Prenom:" HorizontalAlignment="Left" Margin="127,42,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="219,74,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.Matricule}" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="label_Copy1" Content="Matricule:" HorizontalAlignment="Left" Margin="128,74,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="23" Margin="219,108,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.TypeDeContrat}" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="label_Copy2" Content="TypeDeContrat:" HorizontalAlignment="Left" Margin="122,108,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="23" Margin="219,142,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.DateNaissance}" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="label_Copy3" Content="DateNaissance:" HorizontalAlignment="Left" Margin="122,142,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="23" Margin="219,177,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.LieuNaissance}" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="label_Copy4" Content="LieuNaissance:" HorizontalAlignment="Left" Margin="122,177,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy7" HorizontalAlignment="Left" Height="26" Margin="219,211,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.EmailPersonnel}" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="label_Copy8" Content="Email:" HorizontalAlignment="Left" Margin="128,211,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.555,1.457"/>
+        <StackPanel Background="#FFDCE25A" Margin="49,42,131.8,150" Grid.Column="1">
+            <Image x:Name="image" 
+                   Source="{Binding Path=PersonnelVM.Photo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   Height="187" RenderTransformOrigin="0.461,-0.622" Margin="3,0,4.2,0" OpacityMask="#FF4748AD">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.628"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </StackPanel>
+        <Button x:Name="button" Content="Ajouter votre photo" Click="ImporterImage_Click" Margin="70,309,150.8,93" Grid.Column="1" RenderTransformOrigin="0.685,1.268" Background="#FFE675E7"/>
+
+        <Button x:Name="button1"               
+                Content="Valider" HorizontalAlignment="Left" 
+                Command="{Binding Path=AjouterPersonnelVM, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                CommandParameter="{Binding Path=PersonnelVM}"
+                Margin="241,349,0,0" VerticalAlignment="Top" Width="116" Height="31" Background="#FF15AD4D"/>
+        <Label x:Name="label_Copy5" Content="Adresse :" HorizontalAlignment="Left" Margin="128,247,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.555,1.457"/>
+        <Label x:Name="label_Copy10" Content="Service : " HorizontalAlignment="Left" Margin="128,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.555,1.457"/>
+        <ComboBox 
+            ItemsSource="{Binding Path=ServicesVM}"
+            SelectedItem="{Binding Path=ServiceVM}"
+            DisplayMemberPath="Nom"
+            
+            HorizontalAlignment="Left" Height="26" Margin="219,279,0,0" VerticalAlignment="Top" Width="164" SelectionChanged="ComboBox_SelectionChanged"/>
+        <ComboBox 
+            ItemsSource="{Binding Path=AdressesVM}"
+            SelectedItem="{Binding Path=AdresseVM}"
+            
+            HorizontalAlignment="Left" Margin="219,247,0,0" VerticalAlignment="Top" Width="164"/>
+        <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Height="26" Margin="219,313,0,0" TextWrapping="Wrap" Text="{Binding PersonnelVM.Profil}" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="label_Copy6" Content="Profil:" HorizontalAlignment="Left" Margin="128,313,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.555,1.457"/>
+
+    </Grid>
+
+</Page>

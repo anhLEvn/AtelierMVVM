@@ -1,0 +1,14 @@
+﻿<Window x:Class="AtelierMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AtelierMVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="#FFDABEDE" Margin="0,0,-98.4,-105">
+        <Button Content="Ajout Personne" HorizontalAlignment="Left" Margin="33,41,0,0" VerticalAlignment="Top" Width="131" Height="45" Click="AppelPageAjoutPersonne_Click"/>
+        <Frame x:Name="frmPrincipale" Content="Frame" HorizontalAlignment="Left" Height="505" Margin="169,0,0,10" VerticalAlignment="Bottom" Width="713"/>
+
+    </Grid>
+</Window>
