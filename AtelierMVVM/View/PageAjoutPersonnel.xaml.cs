@@ -22,7 +22,7 @@ namespace AtelierMVVM.View
     /// </summary>
     public partial class PageAjoutPersonnel : Page
     {
-        CrudViewModel crudViewModel = new CrudViewModel();
+        CrudPersonnelViewModel crudViewModel = new CrudPersonnelViewModel();
 
         public PageAjoutPersonnel()
         {

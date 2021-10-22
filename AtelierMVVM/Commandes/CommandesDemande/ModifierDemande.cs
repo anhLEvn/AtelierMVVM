@@ -8,18 +8,18 @@ using System.Windows.Input;
 
 namespace AtelierMVVM.Model
 {
-    public class CreerDemande : ICommand
+    class ModifierDemande : ICommand
 
     {
         public event EventHandler CanExecuteChanged;
 
-        private CrudViewModel crudViewModel;
+        CrudDemandeViewModel crudDemandeViewModel;
 
-        public CreerDemande(CrudViewModel crudViewModel)
+        public ModifierDemande(CrudDemandeViewModel crudDemandeViewModel)
         {
-            this.crudViewModel = crudViewModel;
-        }
+            this.crudDemandeViewModel = crudDemandeViewModel; 
 
+        }
         public bool CanExecute(object parameter)
         {
             return true;
@@ -27,7 +27,7 @@ namespace AtelierMVVM.Model
 
         public void Execute(object parameter)
         {
-            crudViewModel.CreerDemande();
+            crudDemandeViewModel.ModifierDemande();
         }
     }
 }

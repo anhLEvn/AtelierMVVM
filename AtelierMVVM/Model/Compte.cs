@@ -12,18 +12,10 @@ namespace AtelierMVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CompteAdmin
+    public partial class Compte
     {
         public int Id { get; set; }
-        public string Motif { get; set; }
-        public string NomBoite { get; set; }
-        public string NomDemandeur { get; set; }
-        public string StatutDemande { get; set; }
-        public string Info { get; set; }
-        public int ServiceId { get; set; }
-        public string EmailAdmin { get; set; }
-        public System.DateTime DateCreation { get; set; }
-    
-        public virtual Service Service { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

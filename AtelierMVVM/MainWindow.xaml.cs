@@ -27,6 +27,8 @@ namespace AtelierMVVM
     public partial class MainWindow : Window
     {
         private PageAjoutPersonnel ajoutPersonnelPage = new PageAjoutPersonnel();
+        private PageGestionAdresse gestionAdressePage = new PageGestionAdresse(); 
+        private PageListePersonnel listePersonnelPage = new PageListePersonnel(); 
 
         public MainWindow()
         {
@@ -52,8 +54,7 @@ namespace AtelierMVVM
                 MessageBox.Show("Connextion abanndoné, fermeture de l'application");
                 this.Close(); 
             }
-            // Ouverture en Modal
-            auth.ShowDialog();
+            
         }
 
 
@@ -82,6 +83,16 @@ namespace AtelierMVVM
         {
             frmPrincipale.Navigate(ajoutPersonnelPage);
 
+        }
+
+        private void GestionAdresse_Click(object sender, RoutedEventArgs e)
+        {
+            frmPrincipale.Navigate(gestionAdressePage);
+        }
+
+        private void AppelPageListePersonne_Click(object sender, RoutedEventArgs e)
+        {
+            frmPrincipale.Navigate(listePersonnelPage);
         }
     }
 }

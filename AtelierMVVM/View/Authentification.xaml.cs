@@ -1,4 +1,5 @@
 ﻿using AtelierMVVM.Helpers;
+using AtelierMVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,10 @@ namespace AtelierMVVM.ViewModel
     /// Interaction logic for Authentication.xaml
     /// </summary>
     public partial class Authentication : Window
+
     {
+        private static int NbEssaie = 3; 
+
         public Authentication()
         {
             InitializeComponent();
@@ -41,6 +45,28 @@ namespace AtelierMVVM.ViewModel
         private void AuthenticationBase()
         {
             MessageBox.Show("Authentification en base...");
+
+            MVVMGestionEmailDBEntities db = new MVVMGestionEmailDBEntities();
+            string login = txtLogin.Text;
+            string pwdCrype = CryptHelper .Base64Encode(pwUser.Password);
+
+            var compteAchercher = db.Comptes.FirstOrDefault(x => (x.Login.Equals(login) && x.Password.Equals(pwdCrype))); 
+            
+            if(compteAchercher != null)
+            {
+                this.DialogResult = true; 
+            }
+            else
+            {
+                NbEssaie--;
+                MessageBox.Show($" Nombre d'essaie retant {NbEssaie}");
+
+                if (NbEssaie == 0)
+                {
+                    MessageBox.Show($" Nombre d'essaie dépassé");
+                    this.DialogResult = false;
+                }
+            }
             this.DialogResult = true; 
         }
 
@@ -49,7 +75,7 @@ namespace AtelierMVVM.ViewModel
             MessageBox.Show($"le login est {txtLogin.Text}, mot de passe {pwUser.Password}"); 
                 //bool ok = true;
                 bool ok = false;
-            ok = AccessHelper.IsAuthentificationCorrect(txtLogin.Text, pwUser.Password); 
+            ok = AccessHelper.IsLoginCorrecte(txtLogin.Text, pwUser.Password, "");  
                 if (ok)
                 {
                     this.DialogResult = true;

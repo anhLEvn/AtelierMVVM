@@ -27,7 +27,7 @@
         <Label x:Name="label_Copy4" Content="LieuNaissance:" HorizontalAlignment="Left" Margin="122,177,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Copy7" HorizontalAlignment="Left" Height="26" Margin="219,211,0,0" TextWrapping="Wrap" Text="{Binding Path=PersonnelVM.EmailPersonnel}" VerticalAlignment="Top" Width="164"/>
         <Label x:Name="label_Copy8" Content="Email:" HorizontalAlignment="Left" Margin="128,211,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.555,1.457"/>
-        <StackPanel Background="#FFDCE25A" Margin="49,42,131.8,150" Grid.Column="1">
+        <StackPanel Background="#FFDCE25A" Margin="49,42,132,247" Grid.Column="1">
             <Image x:Name="image" 
                    Source="{Binding Path=PersonnelVM.Photo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                    Height="187" RenderTransformOrigin="0.461,-0.622" Margin="3,0,4.2,0" OpacityMask="#FF4748AD">
@@ -41,7 +41,7 @@
                 </Image.RenderTransform>
             </Image>
         </StackPanel>
-        <Button x:Name="button" Content="Ajouter votre photo" Click="ImporterImage_Click" Margin="70,309,150.8,93" Grid.Column="1" RenderTransformOrigin="0.685,1.268" Background="#FFE675E7"/>
+        <Button x:Name="button" Content="Ajouter votre photo" Click="ImporterImage_Click" Margin="66,244,155,158" Grid.Column="1" RenderTransformOrigin="0.685,1.268" Background="#FFE675E7"/>
 
         <Button x:Name="button1"               
                 Content="Valider" HorizontalAlignment="Left" 

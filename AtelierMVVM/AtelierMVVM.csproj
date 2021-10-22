@@ -41,6 +41,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -65,21 +68,66 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commandes\CreerDemande.cs" />
-    <Compile Include="Commandes\ModifierDemande.cs" />
-    <Compile Include="Commandes\RechercherDemande.cs" />
+    <Compile Include="Commandes\CommandesDemande\AjouterCreationDemande.cs" />
+    <Compile Include="Commandes\CommandesDemande\ModifierDemande.cs" />
+    <Compile Include="Commandes\CommandesDemande\RechercherDemande.cs" />
+    <Compile Include="Commandes\CommandesPersonnel\ListPersonnels.cs" />
+    <Compile Include="Commandes\CommandesPersonnel\ModifierPersonnel.cs" />
+    <Compile Include="Commandes\CommandesPersonnel\RecherPersonnelParMatricule.cs" />
+    <Compile Include="Commandes\CommandesPersonnel\SupprimerPersonne.cs" />
+    <Compile Include="Helpers\AccesAPIHelper.cs" />
     <Compile Include="Helpers\AccessHelper.cs" />
+    <Compile Include="Helpers\CryptHelper.cs" />
+    <Compile Include="Model\AdresseDomicile.cs">
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AdresseGov.cs" />
+    <Compile Include="Model\Caracteristique.cs" />
+    <Compile Include="Model\Compte.cs">
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CompteAdmin.cs">
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CompteDBContext.cs" />
+    <Compile Include="Commandes\CommandesPersonnel\AjouterPersonnel.cs" />
     <Compile Include="Model\DemandeCreation2.cs">
-      <DependentUpon>EmailDBEntities.tt</DependentUpon>
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Geometry.cs" />
+    <Compile Include="Model\MVVMDBEntites.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVVMDBEntites.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MVVMDBEntites.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MVVMDBEntites.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVVMDBEntites.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Personnel.cs">
-      <DependentUpon>EmailDBEntities.tt</DependentUpon>
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
     </Compile>
-    <Compile Include="Commandes\AjouterPersonnel.cs" />
-    <Compile Include="ViewModel\CrudViewModel.cs" />
+    <Compile Include="Model\Personnels_RespService.cs">
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PropertiesAdresse.cs" />
+    <Compile Include="Model\Service.cs">
+      <DependentUpon>MVVMDBEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CrudAdresseViewModel.cs" />
+    <Compile Include="ViewModel\CrudDemandeViewModel.cs" />
+    <Compile Include="ViewModel\CrudPersonnelViewModel.cs" />
     <Compile Include="ViewModel\DemandeCreation.xaml.cs">
       <DependentUpon>DemandeCreation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commandes\CommandesAdresse\VerifiAdresseCommand.cs" />
+    <Compile Include="Commandes\CommandesAdresse\EnregistrerAdresseCommand.cs" />
     <Compile Include="View\Authentification.xaml.cs">
       <DependentUpon>Authentification.xaml</DependentUpon>
     </Compile>
@@ -88,6 +136,18 @@
     </Compile>
     <Compile Include="View\PageAjoutPersonnel.xaml.cs">
       <DependentUpon>PageAjoutPersonnel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageGestionAdresse.xaml.cs">
+      <DependentUpon>PageGestionAdresse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageGestionCompte.xaml.cs">
+      <DependentUpon>PageGestionCompte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageListePersonnel.xaml.cs">
+      <DependentUpon>PageListePersonnel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageModifierPersonnel.xaml.cs">
+      <DependentUpon>PageModifierPersonnel.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,35 +177,24 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PageGestionAdresse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageGestionCompte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageListePersonnel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageModifierPersonnel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\AdresseDomicile.cs">
-      <DependentUpon>EmailDBEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\CompteAdmin.cs">
-      <DependentUpon>EmailDBEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\EmailDBEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmailDBEntities.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\EmailDBEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmailDBEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\EmailDBEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmailDBEntities.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\RespService.cs">
-      <DependentUpon>EmailDBEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Service.cs">
-      <DependentUpon>EmailDBEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -163,12 +212,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\EmailDBEntities.edmx">
+    <EntityDeploy Include="Model\MVVMDBEntites.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EmailDBEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>MVVMDBEntites.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\EmailDBEntities.edmx.diagram">
-      <DependentUpon>EmailDBEntities.edmx</DependentUpon>
+    <None Include="Model\MVVMDBEntites.edmx.diagram">
+      <DependentUpon>MVVMDBEntites.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -245,21 +294,25 @@
     <Resource Include="Icons\icons8-utilisateur-masculin-64.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Model\EmailDBEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EmailDBEntities.Context.cs</LastGenOutput>
-      <DependentUpon>EmailDBEntities.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\EmailDBEntities.edmx.sql" />
-    <Content Include="Model\EmailDBEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EmailDBEntities.cs</LastGenOutput>
-      <DependentUpon>EmailDBEntities.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\MVVMDBEntites.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MVVMDBEntites.edmx</DependentUpon>
+      <LastGenOutput>MVVMDBEntites.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MVVMDBEntites.edmx.sql" />
+    <Content Include="Model\MVVMDBEntites.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MVVMDBEntites.edmx</DependentUpon>
+      <LastGenOutput>MVVMDBEntites.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commandes\CommandesService\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

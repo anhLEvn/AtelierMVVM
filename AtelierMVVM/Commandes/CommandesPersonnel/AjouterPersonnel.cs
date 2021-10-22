@@ -12,11 +12,11 @@ namespace AtelierMVVM.ViewModel
 {
     public class AjouterPersonnel : ICommand
     {
-        private CrudViewModel crudViewModel;
+        private CrudPersonnelViewModel crudPersonnelViewModel;
 
-        public AjouterPersonnel(CrudViewModel crudViewModel)
+        public AjouterPersonnel(CrudPersonnelViewModel crudPersonnelViewModel)
         {
-            this.crudViewModel = crudViewModel;
+            this.crudPersonnelViewModel = crudPersonnelViewModel;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -28,7 +28,7 @@ namespace AtelierMVVM.ViewModel
 
         public void Execute(object parameter)
         {
-            crudViewModel.AjouterPersonne();
+            crudPersonnelViewModel.AjouterPersonne();
         }
     }
 }

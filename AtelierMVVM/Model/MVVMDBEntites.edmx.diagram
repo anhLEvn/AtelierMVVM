@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b6e317cf640d41e3a78e9bc815a44aba" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="MVVMGestionEmailDBModel.AdresseDomicile" Width="1.5" PointX="6" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVVMGestionEmailDBModel.CompteAdmin" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVVMGestionEmailDBModel.Compte" Width="1.5" PointX="2.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVVMGestionEmailDBModel.DemandeCreation2" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVVMGestionEmailDBModel.Personnel" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVVMGestionEmailDBModel.Personnels_RespService" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVVMGestionEmailDBModel.Service" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="MVVMGestionEmailDBModel.FK_AdresseDomicilePersonnel" ManuallyRouted="false" />
+        <AssociationConnector Association="MVVMGestionEmailDBModel.FK_ServiceEmailAdministratif" ManuallyRouted="false" />
+        <AssociationConnector Association="MVVMGestionEmailDBModel.FK_PersonnelService" ManuallyRouted="false" />
+        <AssociationConnector Association="MVVMGestionEmailDBModel.FK_RespService_inherits_Personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="MVVMGestionEmailDBModel.FK_RespServiceService" ManuallyRouted="false" />
+        <AssociationConnector Association="MVVMGestionEmailDBModel.DemandeCreation2RespService" ManuallyRouted="false" />
+        <AssociationConnector Association="MVVMGestionEmailDBModel.DemandeCreation2Service" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

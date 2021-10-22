@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MVVMGestionEmailDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MVVMGestionEmailDBModelStoreContainer">
+    <EntitySet Name="AdresseDomiciles" EntityType="MVVMGestionEmailDBModel.Store.AdresseDomiciles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CompteAdmins" EntityType="MVVMGestionEmailDBModel.Store.CompteAdmins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comptes" EntityType="MVVMGestionEmailDBModel.Store.Comptes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DemandeCreation2" EntityType="MVVMGestionEmailDBModel.Store.DemandeCreation2" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personnels" EntityType="MVVMGestionEmailDBModel.Store.Personnels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personnels_RespService" EntityType="MVVMGestionEmailDBModel.Store.Personnels_RespService" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Services" EntityType="MVVMGestionEmailDBModel.Store.Services" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DemandeCreation2RespService" EntityType="MVVMGestionEmailDBModel.Store.DemandeCreation2RespService" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DemandeCreation2Service" EntityType="MVVMGestionEmailDBModel.Store.DemandeCreation2Service" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AdresseDomicilePersonnel" Association="MVVMGestionEmailDBModel.Store.FK_AdresseDomicilePersonnel">
+      <End Role="AdresseDomiciles" EntitySet="AdresseDomiciles" />
+      <End Role="Personnels" EntitySet="Personnels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceEmailAdministratif" Association="MVVMGestionEmailDBModel.Store.FK_ServiceEmailAdministratif">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="CompteAdmins" EntitySet="CompteAdmins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonnelService" Association="MVVMGestionEmailDBModel.Store.FK_PersonnelService">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="Personnels" EntitySet="Personnels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RespService_inherits_Personnel" Association="MVVMGestionEmailDBModel.Store.FK_RespService_inherits_Personnel">
+      <End Role="Personnels" EntitySet="Personnels" />
+      <End Role="Personnels_RespService" EntitySet="Personnels_RespService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RespServiceService" Association="MVVMGestionEmailDBModel.Store.FK_RespServiceService">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="Personnels_RespService" EntitySet="Personnels_RespService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DemandeCreation2RespService_DemandeCreation2" Association="MVVMGestionEmailDBModel.Store.FK_DemandeCreation2RespService_DemandeCreation2">
+      <End Role="DemandeCreation2" EntitySet="DemandeCreation2" />
+      <End Role="DemandeCreation2RespService" EntitySet="DemandeCreation2RespService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DemandeCreation2RespService_Personnels_RespService" Association="MVVMGestionEmailDBModel.Store.FK_DemandeCreation2RespService_Personnels_RespService">
+      <End Role="Personnels_RespService" EntitySet="Personnels_RespService" />
+      <End Role="DemandeCreation2RespService" EntitySet="DemandeCreation2RespService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DemandeCreation2Service_DemandeCreation2" Association="MVVMGestionEmailDBModel.Store.FK_DemandeCreation2Service_DemandeCreation2">
+      <End Role="DemandeCreation2" EntitySet="DemandeCreation2" />
+      <End Role="DemandeCreation2Service" EntitySet="DemandeCreation2Service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DemandeCreation2Service_Services" Association="MVVMGestionEmailDBModel.Store.FK_DemandeCreation2Service_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="DemandeCreation2Service" EntitySet="DemandeCreation2Service" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AdresseDomiciles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NomRue" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodePostal" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompteAdmins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Motif" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NomBoite" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NomDemandeur" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StatutDemande" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Info" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="EmailAdmin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateCreation" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comptes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DemandeCreation2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateDeDemande" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumeroDeDemande" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TitreDeDemande" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personnels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Matricule" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TypeDeContrat" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+    <Property Name="LieuNaissance" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Profil" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EmailPersonnel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AdresseDomicile_Id" Type="int" Nullable="false" />
+    <Property Name="Service1_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personnels_RespService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="RespServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DemandeCreationId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Service_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TelephonesService" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DemandeCreation2RespService">
+    <Key>
+      <PropertyRef Name="DemandeCreation2_Id" />
+      <PropertyRef Name="Personnels_RespService_Id" />
+    </Key>
+    <Property Name="DemandeCreation2_Id" Type="int" Nullable="false" />
+    <Property Name="Personnels_RespService_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DemandeCreation2Service">
+    <Key>
+      <PropertyRef Name="DemandeCreation2_Id" />
+      <PropertyRef Name="Services_Id" />
+    </Key>
+    <Property Name="DemandeCreation2_Id" Type="int" Nullable="false" />
+    <Property Name="Services_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AdresseDomicilePersonnel">
+    <End Role="AdresseDomiciles" Type="MVVMGestionEmailDBModel.Store.AdresseDomiciles" Multiplicity="1" />
+    <End Role="Personnels" Type="MVVMGestionEmailDBModel.Store.Personnels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdresseDomiciles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personnels">
+        <PropertyRef Name="AdresseDomicile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceEmailAdministratif">
+    <End Role="Services" Type="MVVMGestionEmailDBModel.Store.Services" Multiplicity="1" />
+    <End Role="CompteAdmins" Type="MVVMGestionEmailDBModel.Store.CompteAdmins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CompteAdmins">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonnelService">
+    <End Role="Services" Type="MVVMGestionEmailDBModel.Store.Services" Multiplicity="1" />
+    <End Role="Personnels" Type="MVVMGestionEmailDBModel.Store.Personnels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personnels">
+        <PropertyRef Name="Service1_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RespService_inherits_Personnel">
+    <End Role="Personnels" Type="MVVMGestionEmailDBModel.Store.Personnels" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Personnels_RespService" Type="MVVMGestionEmailDBModel.Store.Personnels_RespService" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Personnels">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personnels_RespService">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RespServiceService">
+    <End Role="Services" Type="MVVMGestionEmailDBModel.Store.Services" Multiplicity="1" />
+    <End Role="Personnels_RespService" Type="MVVMGestionEmailDBModel.Store.Personnels_RespService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personnels_RespService">
+        <PropertyRef Name="Service_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DemandeCreation2RespService_DemandeCreation2">
+    <End Role="DemandeCreation2" Type="MVVMGestionEmailDBModel.Store.DemandeCreation2" Multiplicity="1" />
+    <End Role="DemandeCreation2RespService" Type="MVVMGestionEmailDBModel.Store.DemandeCreation2RespService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DemandeCreation2">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DemandeCreation2RespService">
+        <PropertyRef Name="DemandeCreation2_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DemandeCreation2RespService_Personnels_RespService">
+    <End Role="DemandeCreation2RespService" Type="MVVMGestionEmailDBModel.Store.DemandeCreation2RespService" Multiplicity="*" />
+    <End Role="Personnels_RespService" Type="MVVMGestionEmailDBModel.Store.Personnels_RespService" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Personnels_RespService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DemandeCreation2RespService">
+        <PropertyRef Name="Personnels_RespService_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DemandeCreation2Service_DemandeCreation2">
+    <End Role="DemandeCreation2" Type="MVVMGestionEmailDBModel.Store.DemandeCreation2" Multiplicity="1" />
+    <End Role="DemandeCreation2Service" Type="MVVMGestionEmailDBModel.Store.DemandeCreation2Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DemandeCreation2">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DemandeCreation2Service">
+        <PropertyRef Name="DemandeCreation2_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DemandeCreation2Service_Services">
+    <End Role="DemandeCreation2Service" Type="MVVMGestionEmailDBModel.Store.DemandeCreation2Service" Multiplicity="*" />
+    <End Role="Services" Type="MVVMGestionEmailDBModel.Store.Services" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DemandeCreation2Service">
+        <PropertyRef Name="Services_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVVMGestionEmailDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdresseDomicile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomRue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodePostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Personnels" Relationship="Self.FK_AdresseDomicilePersonnel" FromRole="AdresseDomiciles" ToRole="Personnels" />
+        </EntityType>
+        <EntityType Name="CompteAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Motif" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomBoite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomDemandeur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatutDemande" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="EmailAdmin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_ServiceEmailAdministratif" FromRole="CompteAdmins" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Compte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DemandeCreation2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateDeDemande" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroDeDemande" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TitreDeDemande" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Personnels_RespService" Relationship="Self.DemandeCreation2RespService" FromRole="DemandeCreation2" ToRole="Personnels_RespService" />
+          <NavigationProperty Name="Services" Relationship="Self.DemandeCreation2Service" FromRole="DemandeCreation2" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Personnel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Matricule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeDeContrat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LieuNaissance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Profil" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailPersonnel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdresseDomicile_Id" Type="Int32" Nullable="false" />
+          <Property Name="Service1_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdresseDomicile" Relationship="Self.FK_AdresseDomicilePersonnel" FromRole="Personnels" ToRole="AdresseDomiciles" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_PersonnelService" FromRole="Personnels" ToRole="Services" />
+          <NavigationProperty Name="Personnels_RespService" Relationship="Self.FK_RespService_inherits_Personnel" FromRole="Personnels" ToRole="Personnels_RespService" />
+        </EntityType>
+        <EntityType Name="Personnels_RespService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="RespServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DemandeCreationId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Service_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personnel" Relationship="Self.FK_RespService_inherits_Personnel" FromRole="Personnels_RespService" ToRole="Personnels" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_RespServiceService" FromRole="Personnels_RespService" ToRole="Services" />
+          <NavigationProperty Name="DemandeCreation2" Relationship="Self.DemandeCreation2RespService" FromRole="Personnels_RespService" ToRole="DemandeCreation2" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TelephonesService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CompteAdmins" Relationship="Self.FK_ServiceEmailAdministratif" FromRole="Services" ToRole="CompteAdmins" />
+          <NavigationProperty Name="Personnels" Relationship="Self.FK_PersonnelService" FromRole="Services" ToRole="Personnels" />
+          <NavigationProperty Name="Personnels_RespService" Relationship="Self.FK_RespServiceService" FromRole="Services" ToRole="Personnels_RespService" />
+          <NavigationProperty Name="DemandeCreation2" Relationship="Self.DemandeCreation2Service" FromRole="Services" ToRole="DemandeCreation2" />
+        </EntityType>
+        <Association Name="FK_AdresseDomicilePersonnel">
+          <End Role="AdresseDomiciles" Type="Self.AdresseDomicile" Multiplicity="1" />
+          <End Role="Personnels" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdresseDomiciles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personnels">
+              <PropertyRef Name="AdresseDomicile_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceEmailAdministratif">
+          <End Role="Services" Type="Self.Service" Multiplicity="1" />
+          <End Role="CompteAdmins" Type="Self.CompteAdmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompteAdmins">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonnelService">
+          <End Role="Services" Type="Self.Service" Multiplicity="1" />
+          <End Role="Personnels" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personnels">
+              <PropertyRef Name="Service1_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespService_inherits_Personnel">
+          <End Role="Personnels" Type="Self.Personnel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personnels_RespService" Type="Self.Personnels_RespService" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personnels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personnels_RespService">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespServiceService">
+          <End Role="Services" Type="Self.Service" Multiplicity="1" />
+          <End Role="Personnels_RespService" Type="Self.Personnels_RespService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personnels_RespService">
+              <PropertyRef Name="Service_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DemandeCreation2RespService">
+          <End Role="DemandeCreation2" Type="Self.DemandeCreation2" Multiplicity="*" />
+          <End Role="Personnels_RespService" Type="Self.Personnels_RespService" Multiplicity="*" />
+        </Association>
+        <Association Name="DemandeCreation2Service">
+          <End Role="DemandeCreation2" Type="Self.DemandeCreation2" Multiplicity="*" />
+          <End Role="Services" Type="Self.Service" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="MVVMGestionEmailDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdresseDomiciles" EntityType="Self.AdresseDomicile" />
+          <EntitySet Name="CompteAdmins" EntityType="Self.CompteAdmin" />
+          <EntitySet Name="Comptes" EntityType="Self.Compte" />
+          <EntitySet Name="DemandeCreation2" EntityType="Self.DemandeCreation2" />
+          <EntitySet Name="Personnels" EntityType="Self.Personnel" />
+          <EntitySet Name="Personnels_RespService" EntityType="Self.Personnels_RespService" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <AssociationSet Name="FK_AdresseDomicilePersonnel" Association="Self.FK_AdresseDomicilePersonnel">
+            <End Role="AdresseDomiciles" EntitySet="AdresseDomiciles" />
+            <End Role="Personnels" EntitySet="Personnels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceEmailAdministratif" Association="Self.FK_ServiceEmailAdministratif">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="CompteAdmins" EntitySet="CompteAdmins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonnelService" Association="Self.FK_PersonnelService">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Personnels" EntitySet="Personnels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespService_inherits_Personnel" Association="Self.FK_RespService_inherits_Personnel">
+            <End Role="Personnels" EntitySet="Personnels" />
+            <End Role="Personnels_RespService" EntitySet="Personnels_RespService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespServiceService" Association="Self.FK_RespServiceService">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Personnels_RespService" EntitySet="Personnels_RespService" />
+          </AssociationSet>
+          <AssociationSet Name="DemandeCreation2RespService" Association="Self.DemandeCreation2RespService">
+            <End Role="DemandeCreation2" EntitySet="DemandeCreation2" />
+            <End Role="Personnels_RespService" EntitySet="Personnels_RespService" />
+          </AssociationSet>
+          <AssociationSet Name="DemandeCreation2Service" Association="Self.DemandeCreation2Service">
+            <End Role="DemandeCreation2" EntitySet="DemandeCreation2" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVVMGestionEmailDBModelStoreContainer" CdmEntityContainer="MVVMGestionEmailDBEntities">
+    <EntitySetMapping Name="AdresseDomiciles">
+      <EntityTypeMapping TypeName="IsTypeOf(MVVMGestionEmailDBModel.AdresseDomicile)">
+        <MappingFragment StoreEntitySet="AdresseDomiciles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="NomRue" ColumnName="NomRue" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompteAdmins">
+      <EntityTypeMapping TypeName="IsTypeOf(MVVMGestionEmailDBModel.CompteAdmin)">
+        <MappingFragment StoreEntitySet="CompteAdmins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Motif" ColumnName="Motif" />
+          <ScalarProperty Name="NomBoite" ColumnName="NomBoite" />
+          <ScalarProperty Name="NomDemandeur" ColumnName="NomDemandeur" />
+          <ScalarProperty Name="StatutDemande" ColumnName="StatutDemande" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="EmailAdmin" ColumnName="EmailAdmin" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comptes">
+      <EntityTypeMapping TypeName="IsTypeOf(MVVMGestionEmailDBModel.Compte)">
+        <MappingFragment StoreEntitySet="Comptes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DemandeCreation2">
+      <EntityTypeMapping TypeName="IsTypeOf(MVVMGestionEmailDBModel.DemandeCreation2)">
+        <MappingFragment StoreEntitySet="DemandeCreation2">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateDeDemande" ColumnName="DateDeDemande" />
+          <ScalarProperty Name="NumeroDeDemande" ColumnName="NumeroDeDemande" />
+          <ScalarProperty Name="TitreDeDemande" ColumnName="TitreDeDemande" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personnels">
+      <EntityTypeMapping TypeName="IsTypeOf(MVVMGestionEmailDBModel.Personnel)">
+        <MappingFragment StoreEntitySet="Personnels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="TypeDeContrat" ColumnName="TypeDeContrat" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+          <ScalarProperty Name="LieuNaissance" ColumnName="LieuNaissance" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Profil" ColumnName="Profil" />
+          <ScalarProperty Name="EmailPersonnel" ColumnName="EmailPersonnel" />
+          <ScalarProperty Name="AdresseDomicile_Id" ColumnName="AdresseDomicile_Id" />
+          <ScalarProperty Name="Service1_Id" ColumnName="Service1_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personnels_RespService">
+      <EntityTypeMapping TypeName="IsTypeOf(MVVMGestionEmailDBModel.Personnels_RespService)">
+        <MappingFragment StoreEntitySet="Personnels_RespService">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RespServiceId" ColumnName="RespServiceId" />
+          <ScalarProperty Name="DemandeCreationId" ColumnName="DemandeCreationId" />
+          <ScalarProperty Name="Service_Id" ColumnName="Service_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="IsTypeOf(MVVMGestionEmailDBModel.Service)">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="TelephonesService" ColumnName="TelephonesService" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DemandeCreation2RespService" TypeName="MVVMGestionEmailDBModel.DemandeCreation2RespService" StoreEntitySet="DemandeCreation2RespService">
+      <EndProperty Name="DemandeCreation2">
+        <ScalarProperty Name="Id" ColumnName="DemandeCreation2_Id" />
+      </EndProperty>
+      <EndProperty Name="Personnels_RespService">
+        <ScalarProperty Name="Id" ColumnName="Personnels_RespService_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DemandeCreation2Service" TypeName="MVVMGestionEmailDBModel.DemandeCreation2Service" StoreEntitySet="DemandeCreation2Service">
+      <EndProperty Name="DemandeCreation2">
+        <ScalarProperty Name="Id" ColumnName="DemandeCreation2_Id" />
+      </EndProperty>
+      <EndProperty Name="Services">
+        <ScalarProperty Name="Id" ColumnName="Services_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

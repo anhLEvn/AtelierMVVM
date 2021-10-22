@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:AtelierMVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#FFDABEDE" Margin="0,0,-98.4,-105">
-        <Button Content="Ajout Personne" HorizontalAlignment="Left" Margin="33,41,0,0" VerticalAlignment="Top" Width="131" Height="45" Click="AppelPageAjoutPersonne_Click"/>
-        <Frame x:Name="frmPrincipale" Content="Frame" HorizontalAlignment="Left" Height="505" Margin="169,0,0,10" VerticalAlignment="Bottom" Width="713"/>
+    <Grid Margin="0,0,-98.4,-105" Background="#FF81F3C6">
+        <Button Content="Ajout Personne" HorizontalAlignment="Left" Margin="33,89,0,0" VerticalAlignment="Top" Width="131" Height="45" Click="AppelPageAjoutPersonne_Click"/>
+        <Frame x:Name="frmPrincipale" 
+               Background="#FFCCD189"
+               Content="Frame" HorizontalAlignment="Left" Height="505" Margin="169,0,0,10" VerticalAlignment="Bottom" Width="713"/>
+        <Button Content="Gestion des adresses" HorizontalAlignment="Left" Margin="33,165,0,0" VerticalAlignment="Top" Width="131" Height="49" RenderTransformOrigin="0.579,-0.361" Click="GestionAdresse_Click"/>
+        <Button Content="Liste Personnel" HorizontalAlignment="Left" Margin="33,23,0,0" VerticalAlignment="Top" Width="131" Height="45" Click="AppelPageListePersonne_Click"/>
 
     </Grid>
 </Window>
